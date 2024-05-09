@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:secondlife/screens/info_screen/info_screen.dart';
-import 'package:secondlife/screens/info_screen/reward_screen.dart';
 
 void main() {
   runApp(const MyApp());

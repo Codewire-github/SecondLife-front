@@ -4,7 +4,7 @@ import 'package:secondlife/common/colors.dart';
 import 'package:secondlife/screens/home_screen/widgets/camerascreen.dart';
 import 'package:secondlife/screens/home_screen/widgets/custom_bottom_nav.dart';
 import 'package:secondlife/screens/home_screen/widgets/homescreen.dart';
-import 'package:secondlife/screens/profile_screen/profile_screen.dart';
+import 'package:secondlife/screens/profile_screen/profile_screen_user.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});
@@ -24,7 +24,7 @@ class _RootScreenState extends State<RootScreen> {
 
   List<Widget> screens() => [
         HomeScreen(),
-        ProfileScreen(),
+        ProfileScreenUser(),
       ];
   @override
   Widget build(BuildContext context) {
