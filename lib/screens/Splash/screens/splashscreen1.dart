@@ -18,34 +18,21 @@ class _ReduceScreenState extends State<ReduceScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 "Reduce",
                 style: TextStyle(
                     color: Color.fromARGB(255, 116, 117, 116),
                     fontSize: 45,
                     fontWeight: FontWeight.w500),
               ),
-              SizedBox(height: 10),
-              Text(
-                "Lessen the amount of waste produced by",
+              const SizedBox(height: 10),
+              const Text(
+                "Lessen the amount of waste produced by consuming fewer products, choosing items with minimal packaging, and being mindful",
                 style: TextStyle(
                     color: Color.fromARGB(238, 134, 138, 135),
                     fontSize: 17,
                     fontWeight: FontWeight.w400),
-              ),
-              Text(
-                "consuming fewer products, choosing items with",
-                style: TextStyle(
-                    color: Color.fromARGB(238, 134, 138, 135),
-                    fontSize: 17,
-                    fontWeight: FontWeight.w400),
-              ),
-              Text(
-                "minimal packaging, and being mindful",
-                style: TextStyle(
-                    color: Color.fromARGB(238, 134, 138, 135),
-                    fontSize: 17,
-                    fontWeight: FontWeight.w400),
+                textAlign: TextAlign.center,
               ),
               SizedBox(height: 20),
               Container(

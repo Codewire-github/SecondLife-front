@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:secondlife/screens/rootscreen.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -66,7 +68,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             fontSize: 16,
                             fontWeight: FontWeight.w500),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(RootScreen());
+                      },
                     )),
                 SizedBox(
                   height: screenHeight * 0.03,
