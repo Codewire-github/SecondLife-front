@@ -81,7 +81,7 @@ class _AvatarSelectionState extends State<AvatarSelection> {
                 ),
                 SizedBox(
                     height: screenHeight *
-                        0.15), // Optional space between avatars and button
+                        0.1), // Optional space between avatars and button
                 CustomLargeButton(
                     label: "Continue",
                     onPressed: () {
