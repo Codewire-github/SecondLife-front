@@ -41,6 +41,7 @@ dependencies:
   get: ^4.6.6
   line_icons: ^2.0.3
   google_fonts: ^6.2.1
+  camera: ^0.10.6
 
 dev_dependencies:
   flutter_test:

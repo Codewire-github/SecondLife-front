@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:secondlife/common/colors.dart';
+import 'package:secondlife/screens/home_screen/widgets/camerascreen.dart';
 import 'package:secondlife/screens/home_screen/widgets/custom_bottom_nav.dart';
 import 'package:secondlife/screens/home_screen/widgets/homescreen.dart';
 import 'package:secondlife/screens/profile_screen/profile_screen.dart';
@@ -34,7 +35,9 @@ class _RootScreenState extends State<RootScreen> {
       floatingActionButton: Transform.scale(
         scale: 1.5,
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.to(() => CameraScreen());
+          },
           backgroundColor: primaryGreenColor,
           elevation: 4,
           shape: RoundedRectangleBorder(
