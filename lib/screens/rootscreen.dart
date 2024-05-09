@@ -14,7 +14,7 @@ class RootScreen extends StatefulWidget {
 }
 
 class _RootScreenState extends State<RootScreen> {
-  int selectedIndex = 1;
+  int selectedIndex = 0;
 
   void navigateBottomBar(int index) {
     setState(() {

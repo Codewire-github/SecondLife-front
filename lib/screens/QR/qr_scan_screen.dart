@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/route_manager.dart';
-import 'package:secondlife/common/colors.dart';
-import 'package:secondlife/common/customButtons.dart';
+import 'package:secondlife/common/widgets/customButtons.dart';
 
 class QRScanScreen extends StatefulWidget {
   const QRScanScreen({super.key});
