@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:secondlife/common/colors.dart';
+import 'package:secondlife/common/customButtons.dart';
 import 'package:secondlife/screens/Signup/screens/user_type_screen.dart';
 import 'package:secondlife/screens/rootscreen.dart';
+import 'package:secondlife/screens/signup/screens/email_verification.dart';
+import 'package:secondlife/screens/signup/widgets/custom_text_field.dart';
 
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
@@ -11,6 +15,22 @@ class WelcomeScreen extends StatefulWidget {
 }
 
 class _WelcomeScreenState extends State<WelcomeScreen> {
+  TextEditingController emailController = TextEditingController();
+  bool isValid = false;
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+  }
+
+  void onFieldChanged(bool val) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        isValid = val;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -20,7 +40,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       body: Column(
         children: [
           Container(
-            height: screenHeight * 0.55,
+            height: screenHeight * 0.5,
             width: double.infinity,
             decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 122, 186, 120),
@@ -33,7 +53,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             padding: EdgeInsets.symmetric(horizontal: 25),
             child: Column(
               children: [
-                const SizedBox(height: 15),
+                const SizedBox(height: 10),
                 const Text(
                   "Welcome to Second Life!",
                   style: TextStyle(
@@ -42,7 +62,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       letterSpacing: 0.2),
                 ),
                 SizedBox(
-                  height: screenHeight * 0.015,
+                  height: screenHeight * 0.008,
                 ),
                 Text(
                   "Welcome to our Recycle App! 🌱 Join us in making a positive impact on the planet by easily sorting and recycling your waste. Let's work together towards a cleaner, greener future! 🌍",
@@ -53,28 +73,43 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
-                  height: screenHeight * 0.03,
+                  height: screenHeight * 0.015,
+                ),
+                CustomEmailField(
+                  isEmail: true,
+                  texteditingController: emailController,
+                  errorText: "It must contain '@' & end with '.com'",
+                  hintText: "example@gmail.com",
+                  onIsValidChanged: onFieldChanged,
+                ),
+                SizedBox(
+                  height: screenHeight * 0.0125,
                 ),
                 Container(
-                    width: screenWidth * 0.8,
-                    padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 10, 150, 71),
+                        color: isValid ? primaryGreenColor : Colors.grey[400],
                         borderRadius: BorderRadius.circular(22.5)),
                     child: TextButton(
-                      child: Text(
+                      onPressed: () {
+                        isValid
+                            ? Get.to(() => EmailVerificationScreen(
+                                  enteredEmailAddress: emailController.text,
+                                ))
+                            : () {};
+                      },
+                      child: const Text(
                         "Continue my journey",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
                             fontWeight: FontWeight.w500),
                       ),
-                      onPressed: () {
-                        Get.to(RootScreen());
-                      },
                     )),
                 SizedBox(
-                  height: screenHeight * 0.04,
+                  height: screenHeight * 0.02,
                 ),
                 Text(
                   "New to Second Life?",
