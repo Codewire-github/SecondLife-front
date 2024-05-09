@@ -33,7 +33,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             padding: EdgeInsets.symmetric(horizontal: 25),
             child: Column(
               children: [
-                const SizedBox(height: 10),
+                const SizedBox(height: 15),
                 const Text(
                   "Welcome to Second Life!",
                   style: TextStyle(
@@ -74,12 +74,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       },
                     )),
                 SizedBox(
-                  height: screenHeight * 0.03,
+                  height: screenHeight * 0.04,
                 ),
                 Text(
                   "New to Second Life?",
                   style: TextStyle(
-                      color: Colors.grey[800],
+                      color: Colors.grey[600],
                       fontWeight: FontWeight.w600,
                       fontSize: 18),
                 ),
@@ -87,7 +87,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   height: screenHeight * 0.0125,
                 ),
                 Container(
-                    width: screenWidth * 0.6,
+                    width: screenWidth * 0.55,
                     padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     decoration: BoxDecoration(
                         color: Color.fromARGB(255, 246, 233, 178),

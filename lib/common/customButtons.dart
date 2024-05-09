@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:secondlife/common/colors.dart';
 
 class CustomLargeButton extends StatelessWidget {
   final String label;
@@ -12,7 +13,7 @@ class CustomLargeButton extends StatelessWidget {
         width: MediaQuery.of(context).size.width * 0.8,
         padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 10, 150, 71),
+            color: primaryGreenColor,
             borderRadius: BorderRadius.circular(22.5)),
         child: TextButton(
           onPressed: onPressed,
