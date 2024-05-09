@@ -3,14 +3,14 @@ import 'package:secondlife/common/colors.dart';
 import 'package:secondlife/common/dummy_data.dart';
 import 'package:secondlife/common/widgets/coupon.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+class ProfileScreenUser extends StatefulWidget {
+  const ProfileScreenUser({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<ProfileScreenUser> createState() => _ProfileScreenUserState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ProfileScreenUserState extends State<ProfileScreenUser> {
   int avatarOption = 2;
   @override
   Widget build(BuildContext context) {
