@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -29,26 +30,52 @@ class _UserTypeScreenState extends State<UserTypeScreen> {
           ),
           Text(
             "Please choose your role",
-            style: TextStyle(fontSize: 26, fontWeight: FontWeight.w600),
+            style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700),
+          ),
+          SizedBox(
+            height: 20,
           ),
           GestureDetector(
-            onTap: () => {},
-            child: Container(
+            onTap: () => {
+              setState(() {
+                selectedRole = 1;
+              })
+            },
+            child: AnimatedContainer(
+                duration: Duration(milliseconds: 300),
+                height: 250,
+                width: 250,
+                decoration: BoxDecoration(
+                    color: Colors.red[50],
+                    borderRadius:
+                        BorderRadius.circular(selectedRole == 1 ? 200 : 0))),
+          ),
+          Text(
+            "User",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+          ),
+          SizedBox(height: 15),
+          GestureDetector(
+            onTap: () => {
+              setState(() {
+                selectedRole = 2;
+              })
+            },
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 300),
               height: 250,
               width: 250,
               decoration: BoxDecoration(
                   color: Colors.red[50],
-                  borderRadius: BorderRadius.circular(200)),
+                  borderRadius: selectedRole == 2
+                      ? BorderRadius.circular(200)
+                      : BorderRadius.circular(0)),
             ),
           ),
-          Text("User"),
-          SizedBox(height: 20),
-          Container(
-            height: 250,
-            width: 250,
-            decoration: BoxDecoration(color: Colors.red[50]),
+          Text(
+            "Recycler",
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
           ),
-          Text("Recycler"),
           SizedBox(height: 20),
           Container(
               height: 55,
