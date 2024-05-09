@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:secondlife/screens/signup/screens/welcome_screen.dart';
+import 'package:secondlife/screens/Splash/screens/splashscreen1.dart';
+import 'package:secondlife/screens/home_screen/widgets/homescreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: WelcomeScreen(),
+      home: ReduceScreen(),
     );
   }
 }
