@@ -29,17 +29,23 @@ class _ReduceScreenState extends State<ReduceScreen> {
               Text(
                 "Lessen the amount of waste produced by",
                 style: TextStyle(
-                    color: Color.fromARGB(238, 134, 138, 135), fontSize: 16),
+                    color: Color.fromARGB(238, 134, 138, 135),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w400),
               ),
               Text(
                 "consuming fewer products, choosing items with",
                 style: TextStyle(
-                    color: Color.fromARGB(238, 134, 138, 135), fontSize: 16),
+                    color: Color.fromARGB(238, 134, 138, 135),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w400),
               ),
               Text(
                 "minimal packaging, and being mindful",
                 style: TextStyle(
-                    color: Color.fromARGB(238, 134, 138, 135), fontSize: 16),
+                    color: Color.fromARGB(238, 134, 138, 135),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w400),
               ),
               SizedBox(height: 20),
               Container(

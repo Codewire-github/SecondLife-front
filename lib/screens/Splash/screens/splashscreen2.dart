@@ -29,17 +29,23 @@ class _ReuseScreenState extends State<ReuseScreen> {
               Text(
                 "Finding new ways to use instead of throwing away",
                 style: TextStyle(
-                    color: Color.fromARGB(238, 134, 138, 135), fontSize: 16),
+                    color: Color.fromARGB(238, 134, 138, 135),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w400),
               ),
               Text(
                 "by repairing, donating or selling items, ",
                 style: TextStyle(
-                    color: Color.fromARGB(238, 134, 138, 135), fontSize: 16),
+                    color: Color.fromARGB(238, 134, 138, 135),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w400),
               ),
               Text(
                 "and finding ways to extend the life of products",
                 style: TextStyle(
-                    color: Color.fromARGB(238, 134, 138, 135), fontSize: 16),
+                    color: Color.fromARGB(238, 134, 138, 135),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w400),
               ),
               SizedBox(height: 20),
               Container(
