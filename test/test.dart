@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
       ),
       debugShowCheckedModeBanner: false,
-      home: LocationScreen(),
+      home: ProfileScreenRecycler(),
     );
   }
 }
