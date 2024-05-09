@@ -21,7 +21,7 @@ class _NameScreenState extends State<NameScreen> {
           children: [
             CustomBackButton(),
             Container(
-                height: MediaQuery.sizeOf(context).height * 0.5,
+                height: MediaQuery.sizeOf(context).height * 0.54,
                 child: Image.asset("assets/img/signupscreen/name.png")),
             Text(
               "What's your name ?",
@@ -53,15 +53,19 @@ class _NameScreenState extends State<NameScreen> {
                 ),
               ),
             ),
-            Align(
-              child: CustomLargeButton(
-                  label: "Continue",
-                  onPressed: () {
-                    Get.to(() => EmailScreen());
-                  }),
-            )
           ],
         ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 35),
+            child: CustomLargeButton(
+                label: "Continue",
+                onPressed: () {
+                  Get.to(() => EmailScreen());
+                }),
+          ),
+        )
       ]),
     );
   }

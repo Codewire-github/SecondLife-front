@@ -20,7 +20,7 @@ class _EmailScreenState extends State<EmailScreen> {
           children: [
             CustomBackButton(),
             Container(
-                height: MediaQuery.sizeOf(context).height * 0.5,
+                height: MediaQuery.sizeOf(context).height * 0.52,
                 child: Image.asset("assets/img/signupscreen/email.png")),
             Text(
               "Please enter your email",
@@ -62,6 +62,17 @@ class _EmailScreenState extends State<EmailScreen> {
             )
           ],
         ),
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 35),
+            child: CustomLargeButton(
+                label: "Continue",
+                onPressed: () {
+                  Get.to(() => EmailScreen());
+                }),
+          ),
+        )
       ]),
     );
   }
