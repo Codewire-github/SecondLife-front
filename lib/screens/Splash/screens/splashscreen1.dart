@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
+import 'package:secondlife/common/colors.dart';
+import 'package:secondlife/common/customButtons.dart';
 import 'package:secondlife/screens/Splash/screens/splashscreen2.dart';
 
 class ReduceScreen extends StatefulWidget {
@@ -19,12 +21,48 @@ class _ReduceScreenState extends State<ReduceScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset(
+                'assets/img/splashscreen/reduce.png',
+                height: MediaQuery.sizeOf(context).height * 0.4,
+              ),
+              SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 10,
+                      width: 10,
+                      decoration: BoxDecoration(
+                          color: secondaryGreenColor,
+                          borderRadius: BorderRadius.circular(50)),
+                    ),
+                    const SizedBox(width: 5),
+                    Container(
+                      height: 10,
+                      width: 10,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[400],
+                          borderRadius: BorderRadius.circular(50)),
+                    ),
+                    const SizedBox(width: 5),
+                    Container(
+                      height: 10,
+                      width: 10,
+                      decoration: BoxDecoration(
+                          color: Colors.grey[400],
+                          borderRadius: BorderRadius.circular(50)),
+                    )
+                  ],
+                ),
+              ),
               Text(
                 "Reduce",
                 style: TextStyle(
                     color: Colors.grey[700],
                     fontSize: 45,
-                    fontWeight: FontWeight.w500),
+                    fontWeight: FontWeight.w600),
               ),
               SizedBox(height: 10),
               Text(
@@ -35,24 +73,12 @@ class _ReduceScreenState extends State<ReduceScreen> {
                     fontWeight: FontWeight.w400),
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 20),
-              Container(
-                  height: 55,
-                  width: 250,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(22.5),
-                    color: Color.fromARGB(255, 10, 150, 71),
-                  ),
-                  child: TextButton(
-                      onPressed: () {
-                        Get.to(
-                          ReuseScreen(),
-                        );
-                      },
-                      child: Text(
-                        "Continue",
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      )))
+              SizedBox(height: MediaQuery.sizeOf(context).height * 0.03),
+              CustomLargeButton(
+                  label: "Continue",
+                  onPressed: () {
+                    Get.to(() => const ReuseScreen());
+                  })
             ],
           ),
         ),
