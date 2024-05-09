@@ -53,13 +53,6 @@ class _EmailScreenState extends State<EmailScreen> {
                 ),
               ),
             ),
-            Align(
-              child: CustomLargeButton(
-                  label: "Continue",
-                  onPressed: () {
-                    Get.to(() => {});
-                  }),
-            )
           ],
         ),
         Align(
