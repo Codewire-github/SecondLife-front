@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:secondlife/screens/Splash/screens/splashscreen1.dart';
@@ -15,7 +17,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       theme: ThemeData(
-        textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
+        textTheme: Platform.isAndroid
+            ? GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme)
+            : null,
       ),
       debugShowCheckedModeBanner: false,
       home: ReduceScreen(),

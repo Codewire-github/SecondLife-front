@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:secondlife/common/back_button.dart';
-import 'package:secondlife/common/customButtons.dart';
+import 'package:secondlife/common/widgets/back_button.dart';
+
+import 'package:secondlife/common/widgets/customButtons.dart';
+import 'package:secondlife/screens/signup/screens/email_verification.dart';
 
 class EmailScreen extends StatefulWidget {
   const EmailScreen({super.key});
@@ -62,7 +64,8 @@ class _EmailScreenState extends State<EmailScreen> {
             child: CustomLargeButton(
                 label: "Continue",
                 onPressed: () {
-                  Get.to(() => EmailScreen());
+                  Get.to(
+                      () => EmailVerificationScreen(enteredEmailAddress: ""));
                 }),
           ),
         )

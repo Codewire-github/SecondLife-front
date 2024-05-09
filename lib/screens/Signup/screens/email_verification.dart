@@ -2,10 +2,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:secondlife/common/back_button.dart';
+import 'package:secondlife/common/widgets/back_button.dart';
 import 'package:secondlife/common/colors.dart';
-import 'package:secondlife/common/customButtons.dart';
-import 'package:secondlife/common/custom_widgets.dart';
+import 'package:secondlife/common/widgets/custom_widgets.dart';
 import 'package:secondlife/screens/rootscreen.dart';
 
 class EmailVerificationScreen extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:secondlife/common/colors.dart';
-import 'package:secondlife/common/customButtons.dart';
+import 'package:secondlife/common/widgets/customButtons.dart';
 import 'package:secondlife/screens/Signup/screens/welcome_screen.dart';
 
 class RecycleScreen extends StatefulWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:secondlife/common/back_button.dart';
-import 'package:secondlife/common/customButtons.dart';
-import 'package:secondlife/screens/Signup/screens/emailscreen.dart';
+import 'package:secondlife/common/widgets/back_button.dart';
+import 'package:secondlife/common/widgets/customButtons.dart';
+import 'package:secondlife/screens/signup/screens/avatar_selection.dart';
 
 class NameScreen extends StatefulWidget {
   const NameScreen({super.key});
@@ -62,7 +62,7 @@ class _NameScreenState extends State<NameScreen> {
             child: CustomLargeButton(
                 label: "Continue",
                 onPressed: () {
-                  Get.to(() => EmailScreen());
+                  Get.to(() => AvatarSelection());
                 }),
           ),
         )

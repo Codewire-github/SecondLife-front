@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:secondlife/common/colors.dart';
-import 'package:secondlife/common/customButtons.dart';
 import 'package:secondlife/screens/Signup/screens/user_type_screen.dart';
-import 'package:secondlife/screens/rootscreen.dart';
 import 'package:secondlife/screens/signup/screens/email_verification.dart';
 import 'package:secondlife/screens/signup/widgets/custom_text_field.dart';
 

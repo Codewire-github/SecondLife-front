@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:secondlife/common/back_button.dart';
-import 'package:secondlife/common/customButtons.dart';
+
+import 'package:secondlife/common/widgets/back_button.dart';
+import 'package:secondlife/common/widgets/customButtons.dart';
 import 'package:secondlife/screens/Signup/screens/namescreen.dart';
 
 class UserTypeScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _UserTypeScreenState extends State<UserTypeScreen> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    double screenWidth = MediaQuery.of(context).size.width;
+    // double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
         children: [
