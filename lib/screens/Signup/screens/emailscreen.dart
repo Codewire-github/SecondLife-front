@@ -57,7 +57,7 @@ class _EmailScreenState extends State<EmailScreen> {
               child: CustomLargeButton(
                   label: "Continue",
                   onPressed: () {
-                    Get.to(() => ());
+                    Get.to(() => {});
                   }),
             )
           ],

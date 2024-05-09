@@ -26,25 +26,25 @@ class _UserTypeScreenState extends State<UserTypeScreen> {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   CustomBackButton(),
                 ],
               ),
-              Text(
+              const Text(
                 "Please choose your role",
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.w700),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               GestureDetector(
                 onTap: () => setState(() => selectedRole = 1),
                 child: AnimatedContainer(
-                  duration: Duration(milliseconds: 300),
-                  height: 250,
-                  width: 250,
+                  duration: const Duration(milliseconds: 300),
+                  width: screenHeight * 0.25,
+                  height: screenHeight * 0.25,
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 235, 255, 236),
                     borderRadius: BorderRadius.circular(selectedRole == 1
@@ -82,8 +82,8 @@ class _UserTypeScreenState extends State<UserTypeScreen> {
                 onTap: () => setState(() => selectedRole = 2),
                 child: AnimatedContainer(
                   duration: Duration(milliseconds: 300),
-                  height: 250,
-                  width: 250,
+                  width: screenHeight * 0.25,
+                  height: screenHeight * 0.25,
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 235, 255, 236),
                     borderRadius: BorderRadius.circular(selectedRole == 2
