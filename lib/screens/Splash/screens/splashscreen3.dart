@@ -27,17 +27,23 @@ class _RecycleScreenState extends State<RecycleScreen> {
               Text(
                 "Converting waste materials into new products",
                 style: TextStyle(
-                    color: Color.fromARGB(238, 134, 138, 135), fontSize: 16),
+                    color: Color.fromARGB(238, 134, 138, 135),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w400),
               ),
               Text(
                 "collecting and processing materials like paper,",
                 style: TextStyle(
-                    color: Color.fromARGB(238, 134, 138, 135), fontSize: 16),
+                    color: Color.fromARGB(238, 134, 138, 135),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w400),
               ),
               Text(
                 "glass, metal, and plastic to create new items",
                 style: TextStyle(
-                    color: Color.fromARGB(238, 134, 138, 135), fontSize: 16),
+                    color: Color.fromARGB(238, 134, 138, 135),
+                    fontSize: 17,
+                    fontWeight: FontWeight.w400),
               ),
               SizedBox(height: 20),
               Container(
