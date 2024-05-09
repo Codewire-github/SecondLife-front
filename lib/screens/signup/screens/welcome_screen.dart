@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:secondlife/screens/Signup/screens/user_type_screen.dart';
 import 'package:secondlife/screens/rootscreen.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -99,7 +100,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             fontSize: 16,
                             fontWeight: FontWeight.w500),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(() => UserTypeScreen());
+                      },
                     )),
               ],
             ),

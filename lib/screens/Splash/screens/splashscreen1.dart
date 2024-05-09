@@ -14,23 +14,24 @@ class _ReduceScreenState extends State<ReduceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        padding: EdgeInsets.all(20),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 "Reduce",
                 style: TextStyle(
-                    color: Color.fromARGB(255, 116, 117, 116),
+                    color: Colors.grey[700],
                     fontSize: 45,
                     fontWeight: FontWeight.w500),
               ),
-              const SizedBox(height: 10),
-              const Text(
+              SizedBox(height: 10),
+              Text(
                 "Lessen the amount of waste produced by consuming fewer products, choosing items with minimal packaging, and being mindful",
                 style: TextStyle(
                     color: Color.fromARGB(238, 134, 138, 135),
-                    fontSize: 17,
+                    fontSize: 16,
                     fontWeight: FontWeight.w400),
                 textAlign: TextAlign.center,
               ),
@@ -39,7 +40,7 @@ class _ReduceScreenState extends State<ReduceScreen> {
                   height: 55,
                   width: 250,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(22.5),
                     color: Color.fromARGB(255, 10, 150, 71),
                   ),
                   child: TextButton(
