@@ -5,6 +5,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:secondlife/common/colors.dart';
 import 'package:secondlife/common/dummy_data.dart';
 import 'package:secondlife/common/widgets/coupon.dart';
+import 'package:secondlife/local_storage/const.dart';
 import 'package:secondlife/screens/home_screen/screens/chatbot_screen.dart';
 import 'package:secondlife/screens/home_screen/screens/nearest_place_screen.dart';
 
@@ -32,6 +33,29 @@ class _HomeScreenState extends State<HomeScreen> {
       }
     },
   ];
+
+  int? avatarOption;
+  String? username = "";
+  String? useremail = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    final loadedUsername = await storage.read(key: name) ?? "";
+    final loadedUseremail = await storage.read(key: email) ?? "";
+    final loadedAvatarOption = await storage.read(key: avatar) ?? "";
+
+    setState(() {
+      username = loadedUsername;
+      useremail = loadedUseremail;
+      avatarOption = int.parse(loadedAvatarOption);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -54,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     border: Border.all(color: primaryGreenColor, width: 2.5),
                   ),
                   child: ClipOval(
-                    child: Image.asset("assets/img/avatars/3.png"),
+                    child: Image.asset("assets/img/avatars/$avatarOption.png"),
                   ),
                 ),
               ],
@@ -69,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  "Ishan Awal",
+                  "$username",
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.w700),
                 ),
               ],
