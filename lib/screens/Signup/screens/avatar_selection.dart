@@ -43,7 +43,6 @@ class _AvatarSelectionState extends State<AvatarSelection> {
           ),
           SizedBox(height: screenHeight * 0.05),
           Expanded(
-            // Wrap the column with Expanded
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
