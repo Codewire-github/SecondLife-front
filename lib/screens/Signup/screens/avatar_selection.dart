@@ -4,6 +4,7 @@ import 'package:secondlife/common/widgets/back_button.dart';
 import 'package:secondlife/common/widgets/customButtons.dart';
 import 'package:secondlife/local_storage/const.dart';
 import 'package:secondlife/screens/Signup/screens/emailscreen.dart';
+import 'package:secondlife/screens/Signup/screens/location_screen.dart';
 
 class AvatarSelection extends StatefulWidget {
   const AvatarSelection({Key? key}) : super(key: key);
@@ -14,6 +15,7 @@ class AvatarSelection extends StatefulWidget {
 
 class _AvatarSelectionState extends State<AvatarSelection> {
   int selectedAvatar = 0;
+  String? selecteduser = "1";
 
   List<String> avatarImg = [
     'assets/img/avatars/1.png',
@@ -87,8 +89,13 @@ class _AvatarSelectionState extends State<AvatarSelection> {
                     onPressed: () async {
                       await storage.write(
                           key: avatar, value: "$selectedAvatar");
+                      selecteduser = await storage.read(key: selectedUser);
 
-                      Get.to(() => EmailScreen());
+                      if (int.parse(selecteduser!) == 1) {
+                        Get.to(() => EmailScreen());
+                      } else {
+                        Get.to(() => LocationScreen());
+                      }
                     }),
               ],
             ),

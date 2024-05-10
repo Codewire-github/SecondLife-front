@@ -5,6 +5,8 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:secondlife/common/widgets/back_button.dart';
 import 'package:secondlife/common/colors.dart';
 import 'package:secondlife/common/widgets/custom_widgets.dart';
+import 'package:secondlife/local_storage/const.dart';
+import 'package:secondlife/screens/profile_screen/profile_screen_recycler.dart';
 import 'package:secondlife/screens/rootscreen.dart';
 
 class EmailVerificationScreen extends StatefulWidget {
@@ -27,6 +29,8 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       StreamController<ErrorAnimationType>();
   bool isConfirm = false;
   bool isCodeValid = true;
+
+  String? selecteduser = "1";
 
   final TextEditingController emailTController = TextEditingController();
 
@@ -228,8 +232,15 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                             !isConfirm ? primaryGreenColor : Colors.grey[400],
                         borderRadius: BorderRadius.circular(22.5)),
                     child: TextButton(
-                      onPressed: () {
-                        !isConfirm ? Get.to(() => const RootScreen()) : () {};
+                      onPressed: () async {
+                        selecteduser = await storage.read(key: selectedUser);
+                        if (!isConfirm) {
+                          if (int.parse(selecteduser!) == 1) {
+                            Get.to(() => const RootScreen());
+                          } else {
+                            Get.to(() => const ProfileScreenRecycler());
+                          }
+                        }
                       },
                       child: const Text(
                         "Continue",

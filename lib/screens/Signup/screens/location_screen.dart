@@ -14,6 +14,8 @@ class LocationScreen extends StatefulWidget {
 class _LocationScreenState extends State<LocationScreen> {
   @override
   Widget build(BuildContext context) {
+    bool isKeyboardOn = MediaQuery.of(context).viewInsets.bottom != 0;
+
     return Scaffold(
       body: Stack(children: [
         Column(
@@ -21,7 +23,9 @@ class _LocationScreenState extends State<LocationScreen> {
           children: [
             CustomBackButton(),
             Container(
-                height: MediaQuery.sizeOf(context).height * 0.54,
+                height: isKeyboardOn
+                    ? MediaQuery.sizeOf(context).height * 0.21
+                    : MediaQuery.sizeOf(context).height * 0.54,
                 child: Image.asset("assets/img/signupscreen/location.png")),
             Text(
               "Where are you located ?",
