@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -14,7 +15,7 @@ class UserApiService {
     String? emailAddress = await storage.read(key: email);
     String? avatarSelected = await storage.read(key: avatar);
 
-    Map<String, dynamic>? loginData = {
+    Map<String, dynamic>? signupData = {
       'email': emailAddress,
       'profile_picture': int.parse(avatarSelected!),
       'user_name': username,
@@ -23,7 +24,7 @@ class UserApiService {
     try {
       Response response = await dio.post(
         userCreateURL,
-        data: loginData,
+        data: signupData,
       );
 
       if (response.statusCode == 200) {
@@ -37,6 +38,66 @@ class UserApiService {
     } catch (e) {
       debugPrint('Error creating user $e');
       return false;
+    }
+  }
+
+  Future<bool> login() async {
+    dio.options.headers['Content-Type'] = 'application/json';
+
+    String? emailAddress = await storage.read(key: email);
+
+    Map<String, dynamic>? loginData = {
+      'email': emailAddress,
+    };
+    try {
+      Response response = await dio.post(loginURL, data: loginData);
+      if (response.statusCode == 200) {
+        print("Login successfully");
+        return true;
+      } else {
+        return false;
+      }
+    } catch (e) {
+      print("Error: $e");
+      return false;
+    }
+  }
+
+  Future<String> sendEmailVerification(String email) async {
+    dio.options.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+
+    try {
+      FormData formData = FormData.fromMap({'email': email});
+
+      Response response =
+          await dio.post(sendEmailVerificationURL, data: formData);
+      debugPrint("Response: ${response.data}");
+
+      if (response.statusCode == 200) {
+        final responseData = jsonDecode(response.data) as Map<String, dynamic>;
+
+        if (responseData.containsKey('verification_code')) {
+          final verificationCode = responseData['verification_code'] as String;
+          if (verificationCode.isNotEmpty) {
+            await storage.write(
+                key: verificationCodeLS, value: verificationCode);
+            return "Successful";
+          } else {
+            debugPrint("Error: Verification code received is empty");
+            return "Verification code not received";
+          }
+        } else {
+          debugPrint("Error: Verification code key not found in response");
+          return "Verification code not received";
+        }
+      } else {
+        debugPrint(
+            "Error sending code: ${response.statusCode} : ${response.statusMessage}");
+        return "Unsuccessful";
+      }
+    } catch (e) {
+      debugPrint('Error: $e');
+      return "Sending code unsuccessful : $e";
     }
   }
 

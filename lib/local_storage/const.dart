@@ -7,3 +7,5 @@ const avatar = 'AVATAR';
 const email = 'EMAIL';
 const selectedUser = 'SELECTED_USER';
 const location = 'LOCATION';
+const userIDLS = 'USER_ID';
+const verificationCodeLS = 'VERIFICATION_CODE';

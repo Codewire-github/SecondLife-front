@@ -11,16 +11,17 @@ import 'package:secondlife/local_storage/const.dart';
 import 'package:secondlife/screens/profile_screen/profile_screen_recycler.dart';
 import 'package:secondlife/screens/rootscreen.dart';
 
-class EmailVerificationScreen extends StatefulWidget {
+class EmailVerificationScreen2 extends StatefulWidget {
   final String enteredEmailAddress;
-  const EmailVerificationScreen({super.key, required this.enteredEmailAddress});
+  const EmailVerificationScreen2(
+      {super.key, required this.enteredEmailAddress});
 
   @override
-  State<EmailVerificationScreen> createState() =>
-      _EmailVerificationScreenState();
+  State<EmailVerificationScreen2> createState() =>
+      _EmailVerificationScreen2State();
 }
 
-class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
+class _EmailVerificationScreen2State extends State<EmailVerificationScreen2> {
   int leftMinutes = 1;
   int leftSeconds = 59;
   late String? currentEmailAddress;
@@ -293,10 +294,12 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     if (emailTController.text == generatedVerificationCode) {
       isCodeValid = true;
       UserApiService userApiService = UserApiService();
-
-      bool isLoginSuccessful = await userApiService.login();
-      if (isLoginSuccessful) {
-        Get.to(() => RootScreen());
+      bool isUserCreated = await userApiService.createUser();
+      if (isUserCreated) {
+        bool isLoginSuccessful = await userApiService.login();
+        if (isLoginSuccessful) {
+          Get.to(() => RootScreen());
+        }
       }
     } else {
       setState(() {
