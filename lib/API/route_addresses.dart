@@ -1,3 +1,4 @@
-String userCreate = "/singUp";
-String login = "/login";
-String orgCreate = '/org';
+String userCreateURL = "/singUp";
+String loginURL = "/login";
+String orgCreateURL = '/org';
+String recyclingVideosURL = '/recyclingData/videos';

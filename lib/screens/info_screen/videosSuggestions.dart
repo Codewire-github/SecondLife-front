@@ -1,27 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:secondlife/API/user_requests.dart';
 import 'package:secondlife/common/widgets/back_button.dart';
 import 'package:secondlife/common/widgets/customButtons.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class VideoSuggestionsScreen extends StatefulWidget {
-  const VideoSuggestionsScreen({super.key});
+  const VideoSuggestionsScreen({Key? key}) : super(key: key);
 
   @override
   State<VideoSuggestionsScreen> createState() => _VideoSuggestionsScreenState();
 }
 
 class _VideoSuggestionsScreenState extends State<VideoSuggestionsScreen> {
-  List<Map<String, String>> dummyVideoData = [
-    {
-      "videoLink": 'https://www.youtube.com/watch?v=abcdef12345',
-      "author": 'John Doe',
-      "title": 'Flutter Tutorial for Beginners',
-    },
-    {
-      "videoLink": 'https://www.youtube.com/watch?v=ghijkl67890',
-      "author": 'Jane Smith',
-      "title": 'Advanced Flutter State Management',
-    },
-  ];
+  List<dynamic> videosData = [];
+
+  @override
+  void initState() {
+    super.initState();
+    initializeData();
+  }
+
+  void initializeData() async {
+    UserApiService userApiService = UserApiService();
+    List<dynamic> tempData = await userApiService.getRecycleVideos("Bottle");
+    if (tempData != null) {
+      setState(() {
+        videosData = tempData;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,24 +42,54 @@ class _VideoSuggestionsScreenState extends State<VideoSuggestionsScreen> {
                 "Some related videos about recycling",
                 style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
               ),
-              Container(
-                alignment: Alignment.center,
-                child: Wrap(
-                  spacing: 15,
-                  runSpacing: 10.0,
-                  children: dummyVideoData.asMap().entries.map((entry) {
+              Expanded(
+                child: ListView(
+                  padding: EdgeInsets.all(20),
+                  children: videosData.asMap().entries.map((entry) {
                     Map<String, dynamic> video = entry.value;
                     return GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        _launchURL(video['url']);
+                      },
                       child: AnimatedContainer(
                         duration: Duration(milliseconds: 300),
                         padding: EdgeInsets.all(20),
+                        margin: EdgeInsets.only(bottom: 20),
                         decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 249, 255, 249),
+                          color: Color.fromARGB(255, 0, 0, 0),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Column(
-                          children: [],
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.network(
+                              video['image'],
+                              width: 120,
+                              height: 90,
+                              fit: BoxFit.cover,
+                            ),
+                            SizedBox(width: 15),
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    video['title'],
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w800,
+                                      fontSize: 16,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  SizedBox(height: 5),
+                                  Text(
+                                    video['author'],
+                                    style: TextStyle(color: Colors.grey[400]),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     );
@@ -65,11 +103,21 @@ class _VideoSuggestionsScreenState extends State<VideoSuggestionsScreen> {
             child: Padding(
               padding: EdgeInsets.only(bottom: 40),
               child: CustomLargeButton(
-                  label: "Check for nearby locations", onPressed: () {}),
+                label: "Check for nearby locations",
+                onPressed: () {},
+              ),
             ),
           )
         ],
       ),
     );
+  }
+}
+
+void _launchURL(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }
