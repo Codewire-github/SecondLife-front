@@ -121,3 +121,26 @@ class UserApiService {
     }
   }
 }
+
+class MLApiService {
+  Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.76.225:5000"));
+
+  Future<List<dynamic>> getTips() async {
+    Map<String, dynamic> data = {
+      "content":
+          "Write a JSON response all in a single line with no \n with an array of tips on how to properly recycle a plastic bottle. Each tip should have a unique ID, distinguishable title and description."
+    };
+    try {
+      Response response = await dio.post('/recyclingData/tips', data: data);
+      if (response.statusCode == 200) {
+        print("${response.data['response']}");
+        return response.data['response'];
+      } else {
+        return [];
+      }
+    } catch (e) {
+      print("Error: $e");
+      return [];
+    }
+  }
+}

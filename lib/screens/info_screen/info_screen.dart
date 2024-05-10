@@ -1,18 +1,50 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mlkit_image_labeling/google_mlkit_image_labeling.dart';
+import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart';
+import 'package:secondlife/common/ML/ml.dart';
 import 'package:secondlife/common/widgets/customButtons.dart';
 import 'package:secondlife/screens/info_screen/guideScreen.dart';
 
 class InfoScreen extends StatefulWidget {
-  const InfoScreen({super.key});
+  final File photo;
+  const InfoScreen({super.key, required this.photo});
 
   @override
   State<InfoScreen> createState() => _InfoScreenState();
 }
 
 class _InfoScreenState extends State<InfoScreen> {
+  late ImageLabeler imageLabeler;
+  final DetectionMode _mode = DetectionMode.single;
+  int noOfObjectsFound = 0;
+  bool _canProcess = false;
+  bool _isBusy = false;
+  String _result = '';
+
+  @override
+  void initState() {
+    super.initState();
+    firsThingsToDo();
+  }
+
+  @override
+  void dispose() {
+    _canProcess = false;
+    imageLabeler.close();
+    super.dispose();
+  }
+
+  Future<void> firsThingsToDo() async {
+    await _initializeLabeler();
+    await _processImagev2(widget.photo);
+  }
+
   @override
   Widget build(BuildContext context) {
+    File selectedImage = widget.photo;
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -77,5 +109,43 @@ class _InfoScreenState extends State<InfoScreen> {
         )
       ],
     ));
+  }
+
+  Future<void> _initializeLabeler() async {
+    final path = 'assets/ML/mobilenet.tflite';
+    print("Model path: $path");
+    final modelPath = await getModelPath(path);
+    final options = LocalLabelerOptions(modelPath: modelPath);
+    imageLabeler = ImageLabeler(options: options);
+    _canProcess = true;
+  }
+
+  Future<void> _processImagev2(File imageSelected) async {
+    if (!_canProcess) return;
+    if (_isBusy) return;
+    _isBusy = true;
+    setState(() {
+      _result = '';
+    });
+    final selectedImage = InputImage.fromFile(imageSelected);
+    final labels = await imageLabeler.processImage(selectedImage);
+    setState(() {
+      noOfObjectsFound = labels.length;
+    });
+
+    String text = '';
+    for (final label in labels) {
+      text += '${label.label}';
+    }
+    print("I am running ===============================");
+    print(text);
+    setState(() {
+      _result = text;
+    });
+
+    _isBusy = false;
+    if (mounted) {
+      setState(() {});
+    }
   }
 }

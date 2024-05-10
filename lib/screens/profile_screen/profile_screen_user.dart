@@ -12,7 +12,7 @@ class ProfileScreenUser extends StatefulWidget {
 }
 
 class _ProfileScreenUserState extends State<ProfileScreenUser> {
-  int? avatarOption;
+  int avatarOption = 1;
   String? username = "";
   String? useremail = "";
 

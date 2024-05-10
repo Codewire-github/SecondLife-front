@@ -36,7 +36,8 @@ class _CameraScreenState extends State<CameraScreen> {
       if (_image != null) {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (BuildContext context) => InfoScreen()),
+          MaterialPageRoute(
+              builder: (BuildContext context) => InfoScreen(photo: _image!)),
         );
       }
       await _initializeCamera();
@@ -163,7 +164,9 @@ class _CameraScreenState extends State<CameraScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (BuildContext context) => InfoScreen()),
+                            builder: (BuildContext context) => InfoScreen(
+                                  photo: _image!,
+                                )),
                       );
                     },
                     child: Container(
