@@ -31,6 +31,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool isKeyboardOn = MediaQuery.of(context).viewInsets.bottom != 0;
+
     double screenHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -38,7 +40,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       body: Column(
         children: [
           Container(
-            height: screenHeight * 0.5,
+            height: isKeyboardOn
+                ? MediaQuery.sizeOf(context).height * 0.15
+                : MediaQuery.sizeOf(context).height * 0.54,
             width: double.infinity,
             decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 122, 186, 120),

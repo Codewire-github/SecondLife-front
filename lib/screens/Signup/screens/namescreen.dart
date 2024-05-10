@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:secondlife/common/widgets/back_button.dart';
 import 'package:secondlife/common/widgets/customButtons.dart';
+import 'package:secondlife/local_storage/const.dart';
 import 'package:secondlife/screens/signup/screens/avatar_selection.dart';
 
 class NameScreen extends StatefulWidget {
@@ -12,8 +13,18 @@ class NameScreen extends StatefulWidget {
 }
 
 class _NameScreenState extends State<NameScreen> {
+  TextEditingController _textController = TextEditingController();
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    bool isKeyboardOn = MediaQuery.of(context).viewInsets.bottom != 0;
+
     return Scaffold(
       body: Stack(children: [
         Column(
@@ -21,7 +32,9 @@ class _NameScreenState extends State<NameScreen> {
           children: [
             CustomBackButton(),
             Container(
-                height: MediaQuery.sizeOf(context).height * 0.54,
+                height: isKeyboardOn
+                    ? MediaQuery.sizeOf(context).height * 0.22
+                    : MediaQuery.sizeOf(context).height * 0.54,
                 child: Image.asset("assets/img/signupscreen/name.png")),
             Text(
               "What's your name ?",
@@ -35,7 +48,7 @@ class _NameScreenState extends State<NameScreen> {
                         color: Color.fromARGB(255, 10, 150, 71), width: 3),
                     borderRadius: BorderRadius.circular(15)),
                 child: TextField(
-                  //controller: _controller,
+                  controller: _textController,
                   decoration: InputDecoration(
                       contentPadding: EdgeInsets.only(
                           left: 30, right: 18, top: 18, bottom: 18),
@@ -61,7 +74,9 @@ class _NameScreenState extends State<NameScreen> {
             padding: const EdgeInsets.only(bottom: 35),
             child: CustomLargeButton(
                 label: "Continue",
-                onPressed: () {
+                onPressed: () async {
+                  await storage.write(key: name, value: _textController.text);
+
                   Get.to(() => AvatarSelection());
                 }),
           ),

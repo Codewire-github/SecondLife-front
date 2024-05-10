@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 import 'package:secondlife/common/widgets/back_button.dart';
 import 'package:secondlife/common/widgets/customButtons.dart';
+import 'package:secondlife/local_storage/const.dart';
 import 'package:secondlife/screens/Signup/screens/namescreen.dart';
 
 class UserTypeScreen extends StatefulWidget {
@@ -102,8 +103,7 @@ class _UserTypeScreenState extends State<UserTypeScreen> {
                               fit: BoxFit.cover),
                         ),
                       ),
-                      if (selectedRole ==
-                          2) // Show checkmark icon when selected
+                      if (selectedRole == 2)
                         Align(
                           alignment: Alignment.bottomRight,
                           child: Icon(Icons.check_circle,
@@ -128,7 +128,11 @@ class _UserTypeScreenState extends State<UserTypeScreen> {
               padding: const EdgeInsets.only(bottom: 35.0),
               child: CustomLargeButton(
                   label: "Continue",
-                  onPressed: () {
+                  onPressed: () async {
+                    await storage.write(
+                        key: selectedUser, value: "$selectedRole");
+                    String? result = await storage.read(key: selectedUser);
+                    print('Selected user role: $result');
                     Get.to(() => NameScreen());
                   }),
             ),

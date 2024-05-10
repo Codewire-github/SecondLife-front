@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:secondlife/common/widgets/customButtons.dart';
 import 'package:pretty_qr_code/pretty_qr_code.dart';
+import 'package:secondlife/local_storage/const.dart';
 
 class ProfileScreenRecycler extends StatefulWidget {
   const ProfileScreenRecycler({super.key});
@@ -12,7 +13,28 @@ class ProfileScreenRecycler extends StatefulWidget {
 }
 
 class _ProfileScreenRecyclerState extends State<ProfileScreenRecycler> {
-  int avatarOption = 2;
+  int? avatarOption;
+  String? username = "";
+  String? useremail = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    final loadedUsername = await storage.read(key: name) ?? "";
+    final loadedUseremail = await storage.read(key: email) ?? "";
+    final loadedAvatarOption = await storage.read(key: avatar) ?? "";
+
+    setState(() {
+      username = loadedUsername;
+      useremail = loadedUseremail;
+      avatarOption = int.parse(loadedAvatarOption);
+    });
+  }
+
   double latitude = 24.2;
   double longitude = 42.3;
   String name = "Dia's thrift";
@@ -49,11 +71,11 @@ class _ProfileScreenRecyclerState extends State<ProfileScreenRecycler> {
               ),
               SizedBox(height: 20),
               Text(
-                "Nikita Khuju",
+                "$username",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
               ),
               Text(
-                "abc@gmail.com",
+                "Location",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w100),
               ),
               SizedBox(height: 20),

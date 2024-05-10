@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:secondlife/common/widgets/back_button.dart';
 import 'package:secondlife/common/widgets/customButtons.dart';
+import 'package:secondlife/local_storage/const.dart';
 import 'package:secondlife/screens/Signup/screens/emailscreen.dart';
 
 class AvatarSelection extends StatefulWidget {
@@ -84,7 +85,10 @@ class _AvatarSelectionState extends State<AvatarSelection> {
                         0.1), // Optional space between avatars and button
                 CustomLargeButton(
                     label: "Continue",
-                    onPressed: () {
+                    onPressed: () async {
+                      await storage.write(
+                          key: avatar, value: "$selectedAvatar");
+
                       Get.to(() => EmailScreen());
                     }),
               ],

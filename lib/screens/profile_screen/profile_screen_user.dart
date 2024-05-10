@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:secondlife/common/colors.dart';
 import 'package:secondlife/common/dummy_data.dart';
 import 'package:secondlife/common/widgets/coupon.dart';
+import 'package:secondlife/local_storage/const.dart';
 
 class ProfileScreenUser extends StatefulWidget {
   const ProfileScreenUser({super.key});
@@ -11,7 +12,28 @@ class ProfileScreenUser extends StatefulWidget {
 }
 
 class _ProfileScreenUserState extends State<ProfileScreenUser> {
-  int avatarOption = 2;
+  int? avatarOption;
+  String? username = "";
+  String? useremail = "";
+
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  Future<void> _loadUserData() async {
+    final loadedUsername = await storage.read(key: name) ?? "";
+    final loadedUseremail = await storage.read(key: email) ?? "";
+    final loadedAvatarOption = await storage.read(key: avatar) ?? "";
+
+    setState(() {
+      username = loadedUsername;
+      useremail = loadedUseremail;
+      avatarOption = int.parse(loadedAvatarOption);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +58,8 @@ class _ProfileScreenUserState extends State<ProfileScreenUser> {
                 ),
                 child: ClipOval(
                   child: Image.asset(
-                    'assets/img/avatars/$avatarOption.png',
+                    'assets/img/avatars/${avatarOption}.png',
+                    key: UniqueKey(),
                     width: 150.0,
                     height: 150.0,
                     fit: BoxFit.cover,
@@ -45,11 +68,11 @@ class _ProfileScreenUserState extends State<ProfileScreenUser> {
               ),
               SizedBox(height: 20),
               Text(
-                "Nikita Khuju",
+                "$username",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
               ),
               Text(
-                "abc@gmail.com",
+                "$useremail",
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w100),
               ),
               SizedBox(height: 20),
