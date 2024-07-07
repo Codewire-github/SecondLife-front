@@ -6,7 +6,8 @@ import 'package:secondlife/common/widgets/back_button.dart';
 import 'package:secondlife/screens/info_screen/videosSuggestions.dart';
 
 class GuideScreen extends StatefulWidget {
-  const GuideScreen({Key? key}) : super(key: key);
+  final String detectedObject;
+  const GuideScreen({Key? key, required this.detectedObject}) : super(key: key);
 
   @override
   State<GuideScreen> createState() => _GuideScreenState();
@@ -34,7 +35,7 @@ class _GuideScreenState extends State<GuideScreen> {
 
   Future<void> initializeData() async {
     MLApiService mlApiService = MLApiService();
-    List<dynamic> tipsData = await mlApiService.getTips();
+    List<dynamic> tipsData = await mlApiService.getTips(widget.detectedObject);
     setState(() {
       responseData = tipsData;
     });
@@ -60,7 +61,9 @@ class _GuideScreenState extends State<GuideScreen> {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Get.to(() => VideoSuggestionsScreen());
+                          Get.to(() => VideoSuggestionsScreen(
+                                detectedObject: widget.detectedObject,
+                              ));
                         },
                         child: AnimatedContainer(
                           duration: Duration(milliseconds: 300),

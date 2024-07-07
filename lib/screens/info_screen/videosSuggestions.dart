@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 import 'package:secondlife/API/user_requests.dart';
 import 'package:secondlife/common/widgets/back_button.dart';
 import 'package:secondlife/common/widgets/customButtons.dart';
+import 'package:secondlife/screens/QR/qr_scan_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class VideoSuggestionsScreen extends StatefulWidget {
-  const VideoSuggestionsScreen({Key? key}) : super(key: key);
+  final String detectedObject;
+  const VideoSuggestionsScreen({super.key, required this.detectedObject});
 
   @override
   State<VideoSuggestionsScreen> createState() => _VideoSuggestionsScreenState();
@@ -22,7 +25,8 @@ class _VideoSuggestionsScreenState extends State<VideoSuggestionsScreen> {
 
   void initializeData() async {
     UserApiService userApiService = UserApiService();
-    List<dynamic> tempData = await userApiService.getRecycleVideos("Bottle");
+    List<dynamic> tempData =
+        await userApiService.getRecycleVideos(widget.detectedObject);
     if (tempData != null) {
       setState(() {
         videosData = tempData;
@@ -103,8 +107,10 @@ class _VideoSuggestionsScreenState extends State<VideoSuggestionsScreen> {
             child: Padding(
               padding: EdgeInsets.only(bottom: 40),
               child: CustomLargeButton(
-                label: "Check for nearby locations",
-                onPressed: () {},
+                label: "Move forward to recycle",
+                onPressed: () {
+                  Get.to(() => QRScanScreen());
+                },
               ),
             ),
           )

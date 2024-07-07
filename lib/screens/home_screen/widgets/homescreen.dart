@@ -150,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     child: AnimatedContainer(
                       duration: Duration(milliseconds: 300),
-                      padding: EdgeInsets.all(20),
+                      padding: EdgeInsets.all(15),
                       decoration: BoxDecoration(
                         color: Color.fromARGB(255, 249, 255, 249),
                         borderRadius: BorderRadius.circular(20),

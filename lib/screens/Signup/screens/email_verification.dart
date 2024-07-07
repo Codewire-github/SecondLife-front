@@ -292,11 +292,18 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
     if (emailTController.text == generatedVerificationCode) {
       isCodeValid = true;
+      isConfirm = true;
       UserApiService userApiService = UserApiService();
-
-      bool isLoginSuccessful = await userApiService.login();
-      if (isLoginSuccessful) {
-        Get.to(() => RootScreen());
+      bool isUserCreated = await userApiService.createUser();
+      if (isUserCreated) {
+        bool isLoginSuccessful = await userApiService.login();
+        if (isLoginSuccessful) {
+          Get.to(() => RootScreen());
+        } else {
+          showErrorAlertBox(context, "Failed to log in");
+        }
+      } else {
+        showErrorAlertBox(context, "Failed to create account");
       }
     } else {
       setState(() {

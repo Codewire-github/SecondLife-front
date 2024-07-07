@@ -125,10 +125,10 @@ class UserApiService {
 class MLApiService {
   Dio dio = Dio(BaseOptions(baseUrl: "http://192.168.76.225:5000"));
 
-  Future<List<dynamic>> getTips() async {
+  Future<List<dynamic>> getTips(String detectedObject) async {
     Map<String, dynamic> data = {
       "content":
-          "Write a JSON response all in a single line with no \n with an array of tips on how to properly recycle a plastic bottle. Each tip should have a unique ID, distinguishable title and description."
+          "Write a JSON response all in a single line with no \n with an array of tips on how to properly recycle a $detectedObject. Each tip should have a unique ID, distinguishable title and description."
     };
     try {
       Response response = await dio.post('/recyclingData/tips', data: data);
@@ -141,6 +141,25 @@ class MLApiService {
     } catch (e) {
       print("Error: $e");
       return [];
+    }
+  }
+
+  Future<String> getInfo(String detectedObject) async {
+    Map<String, dynamic> data = {
+      "content":
+          "Write a short paragraph about the impact of $detectedObject in 60 words"
+    };
+    try {
+      Response response = await dio.post('/recyclingData/tips', data: data);
+      if (response.statusCode == 200) {
+        print("${response.data}");
+        return response.data;
+      } else {
+        return "";
+      }
+    } catch (e) {
+      print("Error: $e");
+      return "";
     }
   }
 }

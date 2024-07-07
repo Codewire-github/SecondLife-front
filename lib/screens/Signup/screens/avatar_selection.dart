@@ -88,9 +88,9 @@ class _AvatarSelectionState extends State<AvatarSelection> {
                     label: "Continue",
                     onPressed: () async {
                       await storage.write(
-                          key: avatar, value: "$selectedAvatar");
+                          key: avatar, value: "${selectedAvatar + 1}");
                       selecteduser = await storage.read(key: selectedUser);
-
+                      print("$selectedAvatar");
                       if (int.parse(selecteduser!) == 1) {
                         Get.to(() => EmailScreen());
                       } else {

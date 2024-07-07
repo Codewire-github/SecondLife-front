@@ -29,7 +29,7 @@ void showErrorAlertBox(BuildContext context, String errorText) {
                 Icon(
                   Icons.error_rounded,
                   size: 35,
-                  color: Colors.purple[400],
+                  color: Colors.green[400],
                 ),
                 const SizedBox(height: 10),
                 Text(

@@ -58,7 +58,7 @@ class _ProfileScreenUserState extends State<ProfileScreenUser> {
                 ),
                 child: ClipOval(
                   child: Image.asset(
-                    'assets/img/avatars/${avatarOption}.png',
+                    'assets/img/avatars/$avatarOption.png',
                     key: UniqueKey(),
                     width: 150.0,
                     height: 150.0,
@@ -73,7 +73,10 @@ class _ProfileScreenUserState extends State<ProfileScreenUser> {
               ),
               Text(
                 "$useremail",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w100),
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey[600]),
               ),
               SizedBox(height: 20),
               Container(
