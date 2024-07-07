@@ -28,7 +28,7 @@ Second Life is a mobile application developed using Flutter aimed at promoting r
 <p align="center">
   <img src="./screenshots/profile_screen.png" width="350px" alt="Profile Screen">
 </p>
-=
+
 
 ## Getting Started
 
@@ -42,7 +42,7 @@ To get a local copy up and running follow these simple steps.
 
 1. Clone the repo
      ```sh
-     git clone https://github.com/your_username/second-life.git
+     https://github.com/Codewire-github/SecondLife-front.git
 
 2. Navigate to the project directory
       ```sh
